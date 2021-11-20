@@ -10,13 +10,11 @@ namespace MyTicTacToe
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Hello World!  Welcome to the TicTacToe game (text version)");
 
-//            string input = Console.ReadLine();
-//            int a = Int32.Parse(input);
-//
-//            Console.WriteLine("You wrote {0}", a);
-//            Console.ReadKey();
+            IPlayer player1 = new ConsolePlayer(new BoardToken(BoardToken.BoardTokenValue.BT_X));
+            IPlayer player2 = new ConsolePlayer(new BoardToken(BoardToken.BoardTokenValue.BT_O));
+
 
             Board gameBoard = new Board();
 
@@ -24,11 +22,12 @@ namespace MyTicTacToe
 
             view.DrawBoard();
 
-            gameBoard.PlaceTokenAtXY(0, 0, Board.BoardToken.BT_X);
+            player1.PlaceToken(gameBoard);
+//            gameBoard.PlaceTokenAtXY(0, 0, new BoardToken(BoardToken.BoardTokenValue.BT_X));
 
             view.DrawBoard();
 
-            gameBoard.PlaceTokenAtXY(1, 1, Board.BoardToken.BT_O);
+            gameBoard.PlaceTokenAtXY(1, 1, new BoardToken(BoardToken.BoardTokenValue.BT_O));
 
             view.DrawBoard();
 

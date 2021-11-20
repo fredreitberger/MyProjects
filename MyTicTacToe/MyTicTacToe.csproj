@@ -44,8 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
+    <Compile Include="BoardToken.cs" />
+    <Compile Include="ConsolePlayer.cs" />
     <Compile Include="ConsoleBoardView.cs" />
     <Compile Include="IBoardView.cs" />
+    <Compile Include="IPlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

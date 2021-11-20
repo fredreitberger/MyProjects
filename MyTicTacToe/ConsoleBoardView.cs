@@ -14,7 +14,7 @@ namespace MyTicTacToe
         /// <summary>
         /// The game board that this view will be drawing
         /// </summary>
-        private Board board;
+        private readonly Board board;
 
         public ConsoleBoardView(Board board) => this.board = board;
 
@@ -38,18 +38,9 @@ namespace MyTicTacToe
         /// <param name="x">X grid location on the board, 0 to 2, left to right</param>
         /// <param name="y">Y grid location on the board, 0 to 2, top to bottom</param>
         /// <returns>single character to represent the token at the given location</returns>
-        private char GetTokenChar(int x, int y)
+        private string GetTokenChar(int x, int y)
         {
-            Board.BoardToken token = this.board.GetTokenAtXY(x, y);
-
-            switch (token)
-            {
-                case Board.BoardToken.BT_Empty: return ' ';
-                case Board.BoardToken.BT_X:     return 'X';
-                case Board.BoardToken.BT_O:     return 'O';
-            }
-            // Error case, should never get here
-            return '!';
+            return this.board.GetTokenAtXY(x, y).ToString();
         }
     }
 }

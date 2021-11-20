@@ -8,15 +8,6 @@ namespace MyTicTacToe
 {
     class Board
     {
-        /// <summary>
-        /// Tokens that can be placed on the board
-        /// </summary>
-        public enum BoardToken
-        {
-            BT_Empty,
-            BT_X,
-            BT_O
-        }
 
 
         /// <summary>
@@ -24,9 +15,9 @@ namespace MyTicTacToe
         /// </summary>
         private BoardToken[] grid;
 
-        public Board() => grid = new BoardToken[9] { BoardToken.BT_Empty, BoardToken.BT_Empty, BoardToken.BT_Empty,
+        public Board() => grid = new BoardToken[9] /*{ BoardToken.BT_Empty, BoardToken.BT_Empty, BoardToken.BT_Empty,
                                                      BoardToken.BT_Empty, BoardToken.BT_Empty, BoardToken.BT_Empty,
-                                                     BoardToken.BT_Empty, BoardToken.BT_Empty, BoardToken.BT_Empty };
+                                                     BoardToken.BT_Empty, BoardToken.BT_Empty, BoardToken.BT_Empty }*/;
 
         /// <summary>
         /// Returns the token at a given grid location
@@ -56,7 +47,7 @@ namespace MyTicTacToe
             if (x >= 0 && x < 3 && y >= 0 && y < 3)
             {
                 // Valid location, return true if the grid slot is empty
-                return grid[(y * 3) + x] == BoardToken.BT_Empty;
+                return BoardToken.BoardTokenValue.BT_Empty == grid[(y * 3) + x].value;
             }
 
             // Bad parameters
