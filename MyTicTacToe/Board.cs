@@ -72,5 +72,64 @@ namespace MyTicTacToe
                 throw new ArgumentException();
             }
         }
+
+        public bool isGameOver()
+        {
+            // Game over when 3 in a row match X or O, or all spots on the grid are filled and no winner
+
+            // Check horizontal lines
+            for (int i = 0; i < 3; i++)
+            {
+                int offset = i * 3;
+                if ((grid[offset].value != BoardToken.BoardTokenValue.BT_Empty) &&
+                    (grid[offset].value == grid[offset+1].value) &&
+                    (grid[offset].value == grid[offset+2].value))
+                {
+                    // not empty, and all three match
+                    return true;
+                }
+            }
+
+            // No horizontal match, check vertical matches
+            for (int i = 0; i < 3; i++)
+            {
+                if ((grid[i].value != BoardToken.BoardTokenValue.BT_Empty) &&
+                    (grid[i].value == grid[i + 3].value) &&
+                    (grid[i].value == grid[i + 6].value))
+                {
+                    // not empty, and all three match
+                    return true;
+                }
+            }
+
+            // No vertical match, check diagonal
+            if ((grid[0].value != BoardToken.BoardTokenValue.BT_Empty) &&
+                (grid[0].value == grid[4].value) &&
+                (grid[0].value == grid[8].value))
+            {
+                // not empty, and all three match
+                return true;
+            }
+            if ((grid[2].value != BoardToken.BoardTokenValue.BT_Empty) &&
+                (grid[2].value == grid[4].value) &&
+                (grid[2].value == grid[6].value))
+            {
+                // not empty, and all three match
+                return true;
+            }
+
+            // No matches, check for all full
+            for (int i = 0; i < 9; i++)
+            {
+                if (grid[i].value == BoardToken.BoardTokenValue.BT_Empty)
+                {
+                    // found an empty space, so game is not over
+                    return false;
+                }
+            }
+
+            // No matches, not all full, game is not over yet
+            return true;
+        }
     }
 }

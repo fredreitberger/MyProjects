@@ -27,7 +27,7 @@ namespace MyTicTacToe
 
             while (true)
             {
-                Console.WriteLine("Player turn:");
+                Console.WriteLine("Player {0} turn:", this.token);
                 Console.WriteLine("  1|2|3");
                 Console.WriteLine("  -+-+-");
                 Console.WriteLine("  4|5|6");
@@ -35,8 +35,8 @@ namespace MyTicTacToe
                 Console.WriteLine("  7|8|9");
                 Console.Write("Select a space (1-9):");
 
-                selection = Int32.Parse(Console.ReadLine());
-                if (selection < 1 || selection > 9)
+                selection = Int32.Parse(Console.ReadLine()) - 1; // convert from 1-9 to 0-8
+                if (selection < 0 || selection >= 9)
                 {
                     Console.WriteLine("Invalid selection, try again");
                     continue;

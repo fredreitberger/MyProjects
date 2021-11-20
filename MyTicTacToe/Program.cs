@@ -15,6 +15,7 @@ namespace MyTicTacToe
             IPlayer player1 = new ConsolePlayer(new BoardToken(BoardToken.BoardTokenValue.BT_X));
             IPlayer player2 = new ConsolePlayer(new BoardToken(BoardToken.BoardTokenValue.BT_O));
 
+            IPlayer currentPlayer = player1;
 
             Board gameBoard = new Board();
 
@@ -22,14 +23,16 @@ namespace MyTicTacToe
 
             view.DrawBoard();
 
-            player1.PlaceToken(gameBoard);
-//            gameBoard.PlaceTokenAtXY(0, 0, new BoardToken(BoardToken.BoardTokenValue.BT_X));
+            while (!gameBoard.isGameOver())
+            {
+                currentPlayer.PlaceToken(gameBoard);
 
-            view.DrawBoard();
+                view.DrawBoard();
 
-            gameBoard.PlaceTokenAtXY(1, 1, new BoardToken(BoardToken.BoardTokenValue.BT_O));
+                currentPlayer = (currentPlayer == player1) ? player2 : player1;
+            }
 
-            view.DrawBoard();
+            // Print the winner
 
             Console.ReadKey();
         }
