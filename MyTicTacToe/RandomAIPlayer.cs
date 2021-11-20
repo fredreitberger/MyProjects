@@ -19,10 +19,19 @@ namespace MyTicTacToe
         private readonly BoardToken token;
 
         /// <summary>
+        /// The Random Number Generator for this AI
+        /// </summary>
+        private Random rng;
+
+        /// <summary>
         /// Initializer, pass in the token for this player
         /// </summary>
         /// <param name="token"></param>
-        public RandomAIPlayer(BoardToken token) => this.token = token;
+        public RandomAIPlayer(BoardToken token)
+        {
+            this.token = token;
+            rng = new Random();
+        }
 
 
         /// <summary>
@@ -33,8 +42,7 @@ namespace MyTicTacToe
         {
             while (true)
             {
-                Random rng = new Random();
-
+                // Pick a new random number
                 int i = rng.Next(0, 8);
 
                 if (gameBoard.CanPlaceTokenAtXY(i % 3, i / 3))

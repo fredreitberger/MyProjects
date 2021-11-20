@@ -12,8 +12,8 @@ namespace MyTicTacToe
         {
             Console.WriteLine("Hello World!  Welcome to the TicTacToe game (text version)");
 
-            IPlayer player1 = new ConsolePlayer(new BoardToken(BoardToken.BoardTokenValue.BT_X));
-            IPlayer player2 = new RandomAIPlayer(new BoardToken(BoardToken.BoardTokenValue.BT_O));
+            IPlayer player1 = PromptForPlayer(new BoardToken(BoardToken.BoardTokenValue.BT_X));
+            IPlayer player2 = PromptForPlayer(new BoardToken(BoardToken.BoardTokenValue.BT_O));
 
             IPlayer currentPlayer = player1;
 
@@ -36,6 +36,29 @@ namespace MyTicTacToe
             Console.WriteLine(gameBoard.GetWinner());
 
             Console.ReadKey();
+        }
+
+        static private IPlayer PromptForPlayer(BoardToken player)
+        {
+            while (true)
+            {
+                Console.WriteLine("  Choose player {0}:", player);
+                Console.WriteLine("    1) Human (console)");
+                Console.WriteLine("    2) Sequential AI");
+                Console.WriteLine("    3) Random AI");
+                int selection = Int32.Parse(Console.ReadLine());
+
+                switch(selection)
+                {
+                    case 1: return new ConsolePlayer(player);
+                    case 2: return new SequentialAIPlayer(player);
+                    case 3: return new RandomAIPlayer(player);
+                }
+
+                // if we get here, it was an invalid selection
+                Console.WriteLine("Invalid selection, try again");
+            }
+
         }
     }
 }
