@@ -85,13 +85,21 @@ namespace MyTicTacToe
             }
         }
 
+        /// <summary>
+        /// Is this board's game over yet?
+        /// </summary>
+        /// <returns>True when the game is over, false when still in progress</returns>
         public bool IsGameOver()
         {
             // Game over when 3 in a row match X or O, or all spots on the grid are filled and no winner
             return this.gameState != GameState.IN_PROGRESS;
         }
 
-        public string GetWinner()
+        /// <summary>
+        /// Returns a string denoting the state of the game (in progress, winning player, or a draw)
+        /// </summary>
+        /// <returns>String denoting the game's state</returns>
+        public string GetGameState()
         {
             switch (this.gameState)
             {
@@ -103,6 +111,9 @@ namespace MyTicTacToe
             return null;
         }
 
+        /// <summary>
+        /// Method to check for a winner or draw and update the internal game state
+        /// </summary>
         private void UpdateGameState()
         {
             // Game over when 3 in a row match X or O, or all spots on the grid are filled and no winner

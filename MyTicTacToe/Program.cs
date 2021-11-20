@@ -33,11 +33,17 @@ namespace MyTicTacToe
             }
 
             // Print the winner
-            Console.WriteLine(gameBoard.GetWinner());
+            Console.WriteLine(gameBoard.GetGameState());
 
             Console.ReadKey();
         }
 
+
+        /// <summary>
+        /// Prompt to choose a player type
+        /// </summary>
+        /// <param name="player">The player's token</param>
+        /// <returns>A new player</returns>
         static private IPlayer PromptForPlayer(BoardToken player)
         {
             while (true)
@@ -58,7 +64,6 @@ namespace MyTicTacToe
                 // if we get here, it was an invalid selection
                 Console.WriteLine("Invalid selection, try again");
             }
-
         }
     }
 }

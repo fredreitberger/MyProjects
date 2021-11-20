@@ -43,7 +43,7 @@ namespace MyTicTacToe
             while (true)
             {
                 // Pick a new random number
-                int i = rng.Next(0, 8);
+                int i = rng.Next(0, 9);
 
                 if (gameBoard.CanPlaceTokenAtXY(i % 3, i / 3))
                 {
