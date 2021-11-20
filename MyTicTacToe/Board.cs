@@ -8,12 +8,23 @@ namespace MyTicTacToe
 {
     class Board
     {
-
+        public enum GameState
+        {
+            IN_PROGRESS,
+            X_WINS,
+            O_WINS,
+            DRAW
+        }
 
         /// <summary>
         ///  The board is an array of tokens, 9 deep, arranged as a 3x3 grid
         /// </summary>
         private BoardToken[] grid;
+
+        /// <summary>
+        /// Current game state
+        /// </summary>
+        private GameState gameState;
 
         public Board() => grid = new BoardToken[9] /*{ BoardToken.BT_Empty, BoardToken.BT_Empty, BoardToken.BT_Empty,
                                                      BoardToken.BT_Empty, BoardToken.BT_Empty, BoardToken.BT_Empty,
@@ -65,6 +76,7 @@ namespace MyTicTacToe
             if (x >= 0 && x < 3 && y >= 0 && y < 3)
             {
                 grid[(y * 3) + x] = token;
+                this.UpdateGameState();
             }
             else
             {
@@ -73,7 +85,25 @@ namespace MyTicTacToe
             }
         }
 
-        public bool isGameOver()
+        public bool IsGameOver()
+        {
+            // Game over when 3 in a row match X or O, or all spots on the grid are filled and no winner
+            return this.gameState != GameState.IN_PROGRESS;
+        }
+
+        public string GetWinner()
+        {
+            switch (this.gameState)
+            {
+                case GameState.IN_PROGRESS:  return "In progress";
+                case GameState.X_WINS:       return "Player X wins!";
+                case GameState.O_WINS:       return "Player O wins!";
+                case GameState.DRAW:         return "It's a draw!";
+            }
+            return null;
+        }
+
+        private void UpdateGameState()
         {
             // Game over when 3 in a row match X or O, or all spots on the grid are filled and no winner
 
@@ -82,11 +112,12 @@ namespace MyTicTacToe
             {
                 int offset = i * 3;
                 if ((grid[offset].value != BoardToken.BoardTokenValue.BT_Empty) &&
-                    (grid[offset].value == grid[offset+1].value) &&
-                    (grid[offset].value == grid[offset+2].value))
+                    (grid[offset].value == grid[offset + 1].value) &&
+                    (grid[offset].value == grid[offset + 2].value))
                 {
                     // not empty, and all three match
-                    return true;
+                    this.gameState = (grid[offset].value == BoardToken.BoardTokenValue.BT_X) ? GameState.X_WINS : GameState.O_WINS;
+                    return;
                 }
             }
 
@@ -98,7 +129,8 @@ namespace MyTicTacToe
                     (grid[i].value == grid[i + 6].value))
                 {
                     // not empty, and all three match
-                    return true;
+                    this.gameState = (grid[i].value == BoardToken.BoardTokenValue.BT_X) ? GameState.X_WINS : GameState.O_WINS;
+                    return;
                 }
             }
 
@@ -108,14 +140,16 @@ namespace MyTicTacToe
                 (grid[0].value == grid[8].value))
             {
                 // not empty, and all three match
-                return true;
+                this.gameState = (grid[0].value == BoardToken.BoardTokenValue.BT_X) ? GameState.X_WINS : GameState.O_WINS;
+                return;
             }
             if ((grid[2].value != BoardToken.BoardTokenValue.BT_Empty) &&
                 (grid[2].value == grid[4].value) &&
                 (grid[2].value == grid[6].value))
             {
                 // not empty, and all three match
-                return true;
+                this.gameState = (grid[2].value == BoardToken.BoardTokenValue.BT_X) ? GameState.X_WINS : GameState.O_WINS;
+                return;
             }
 
             // No matches, check for all full
@@ -124,12 +158,14 @@ namespace MyTicTacToe
                 if (grid[i].value == BoardToken.BoardTokenValue.BT_Empty)
                 {
                     // found an empty space, so game is not over
-                    return false;
+                    this.gameState = GameState.IN_PROGRESS;
+                    return;
                 }
             }
 
             // No matches, not all full, game is not over yet
-            return true;
+            this.gameState = GameState.DRAW;
+            return;
         }
     }
 }

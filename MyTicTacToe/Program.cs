@@ -23,7 +23,7 @@ namespace MyTicTacToe
 
             view.DrawBoard();
 
-            while (!gameBoard.isGameOver())
+            while (!gameBoard.IsGameOver())
             {
                 currentPlayer.PlaceToken(gameBoard);
 
@@ -33,6 +33,7 @@ namespace MyTicTacToe
             }
 
             // Print the winner
+            Console.WriteLine(gameBoard.GetWinner());
 
             Console.ReadKey();
         }

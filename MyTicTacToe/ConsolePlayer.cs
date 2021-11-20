@@ -8,12 +8,22 @@ namespace MyTicTacToe
 {
     class ConsolePlayer : IPlayer
     {
-
+        /// <summary>
+        /// The player's token
+        /// </summary>
         private readonly BoardToken token;
 
+        /// <summary>
+        /// Initializer, pass in the token for this player
+        /// </summary>
+        /// <param name="token"></param>
         public ConsolePlayer(BoardToken token) => this.token = token;
 
 
+        /// <summary>
+        /// Implementation to play one turn
+        /// </summary>
+        /// <param name="gameBoard">The board to place a token on</param>
         void IPlayer.PlaceToken(Board gameBoard)
         {
             int selection = PromptPlayer(gameBoard);
@@ -21,6 +31,11 @@ namespace MyTicTacToe
             gameBoard.PlaceTokenAtXY(selection % 3, selection / 3, this.token);
         }
 
+        /// <summary>
+        /// Helper method to prompt for a location to place a token
+        /// </summary>
+        /// <param name="gameBoard">The game board</param>
+        /// <returns></returns>
         private int PromptPlayer(Board gameBoard)
         {
             int selection = -1;

@@ -18,11 +18,21 @@ namespace MyTicTacToe
             BT_O
         }
 
+        /// <summary>
+        /// The token representation
+        /// </summary>
         public BoardTokenValue value;
 
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="value">The token value to use</param>
         public BoardToken(BoardTokenValue value = BoardTokenValue.BT_Empty) => this.value = value;
 
+        /// <summary>
+        /// Gets the representation of this token
+        /// </summary>
+        /// <returns>String representation of the token</returns>
         public override string ToString()
         {
             switch (value)
