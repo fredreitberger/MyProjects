@@ -13,7 +13,7 @@ namespace MyTicTacToe
             Console.WriteLine("Hello World!  Welcome to the TicTacToe game (text version)");
 
             IPlayer player1 = new ConsolePlayer(new BoardToken(BoardToken.BoardTokenValue.BT_X));
-            IPlayer player2 = new ConsolePlayer(new BoardToken(BoardToken.BoardTokenValue.BT_O));
+            IPlayer player2 = new RandomAIPlayer(new BoardToken(BoardToken.BoardTokenValue.BT_O));
 
             IPlayer currentPlayer = player1;
 

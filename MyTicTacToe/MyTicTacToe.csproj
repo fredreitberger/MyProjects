@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="BoardToken.cs" />
+    <Compile Include="RandomAIPlayer.cs" />
+    <Compile Include="SequentialAIPlayer.cs" />
     <Compile Include="ConsolePlayer.cs" />
     <Compile Include="ConsoleBoardView.cs" />
     <Compile Include="IBoardView.cs" />
