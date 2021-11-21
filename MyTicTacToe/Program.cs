@@ -52,7 +52,13 @@ namespace MyTicTacToe
                 Console.WriteLine("    1) Human (console)");
                 Console.WriteLine("    2) Sequential AI");
                 Console.WriteLine("    3) Random AI");
-                int selection = Int32.Parse(Console.ReadLine());
+
+                int selection = 0;
+                
+                if (!Int32.TryParse(Console.ReadLine(), out selection))
+                {
+                    selection = 0; // force an invalid selection and try again
+                }
 
                 switch(selection)
                 {

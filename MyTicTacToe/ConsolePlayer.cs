@@ -50,7 +50,14 @@ namespace MyTicTacToe
                 Console.WriteLine("  7|8|9");
                 Console.Write("Select a space (1-9):");
 
-                selection = Int32.Parse(Console.ReadLine()) - 1; // convert from 1-9 to 0-8
+                if (!Int32.TryParse(Console.ReadLine(), out selection))
+                {
+                    Console.WriteLine("Please enter a number 1-9");
+                    continue;
+                }
+                
+                selection--; // convert from 1-9 to 0-8
+
                 if (selection < 0 || selection >= 9)
                 {
                     Console.WriteLine("Invalid selection, try again");
