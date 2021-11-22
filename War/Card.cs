@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace War
 {
@@ -32,10 +28,10 @@ namespace War
 
         private readonly char suit;
 
-        public const char SUIT_HEARTS   = '\x2661';
+        public const char SUIT_HEARTS   = '\x2665';
         public const char SUIT_CLUBS    = '\x2663';
         public const char SUIT_SPADES   = '\x2660';
-        public const char SUIT_DIAMONDS = '\x2662';
+        public const char SUIT_DIAMONDS = '\x2666';
 
 
         public Card(CardRank rank, char suit = SUIT_CLUBS)
@@ -77,7 +73,7 @@ namespace War
             return null;
         }
 
-        int IComparable.CompareTo(object obj)
+        public int CompareTo(object obj)
         {
             if (obj.GetType() != typeof(Card))
             {

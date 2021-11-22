@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace War
 {
@@ -25,20 +22,17 @@ namespace War
 
             foreach (Card.CardRank rank in Enum.GetValues(typeof(Card.CardRank)))
             {
-                newPile.pile.Append(new Card(rank, Card.SUIT_HEARTS));
-                newPile.pile.Append(new Card(rank, Card.SUIT_CLUBS));
-                newPile.pile.Append(new Card(rank, Card.SUIT_DIAMONDS));
-                newPile.pile.Append(new Card(rank, Card.SUIT_SPADES));
+                newPile.pile.Add(new Card(rank, Card.SUIT_HEARTS));
+                newPile.pile.Add(new Card(rank, Card.SUIT_CLUBS));
+                newPile.pile.Add(new Card(rank, Card.SUIT_DIAMONDS));
+                newPile.pile.Add(new Card(rank, Card.SUIT_SPADES));
             }
 
             return newPile;
         }
 
-
-        public Card PeekTop()
-        {
-            return pile[0];
-        }
+        public CardPile() => pile = new List<Card>();
+         
 
         public Card TakeTop()
         {
@@ -59,6 +53,14 @@ namespace War
             {
                 this.pile.Add(card);
             }
+
+            // and remove all cards from the other pile
+            pile.pile.RemoveRange(0, pile.pile.Count);
+        }
+
+        public int Count()
+        {
+            return pile.Count;
         }
 
         public void Shuffle()

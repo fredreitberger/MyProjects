@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace War
 {
@@ -12,10 +8,19 @@ namespace War
         {
             Console.WriteLine("War card game!");
 
-            Card testCard = new Card(Card.CardRank.RANK_ACE, Card.SUIT_CLUBS);
+            WarGame game = new WarGame();
 
-            Console.WriteLine("Card is a {0}", testCard);
+            // cards delt, now to play war!
+            Console.WriteLine("Press any key to play a card");
+            Console.ReadKey();
 
+            while (game.GameInProgress())
+            {
+                game.TakeTurn();
+                Console.ReadKey();
+            }
+
+            Console.WriteLine("Player {0} wins!", game.GetWinner());
             Console.ReadKey();
         }
     }
