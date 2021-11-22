@@ -12,7 +12,11 @@ namespace War
         {
             Console.WriteLine("War card game!");
 
+            Card testCard = new Card(Card.CardRank.RANK_ACE, Card.SUIT_CLUBS);
 
+            Console.WriteLine("Card is a {0}", testCard);
+
+            Console.ReadKey();
         }
     }
 }

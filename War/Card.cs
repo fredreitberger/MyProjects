@@ -8,16 +8,73 @@ namespace War
 {
     class Card
     {
-        private readonly byte rank;
+        /// <summary>
+        /// Card rank, Ace = 1, 2-10, Jack = 11, Queen = 12, King = 13
+        /// </summary>
+        private readonly CardRank rank;
+
+        public enum CardRank
+        {
+            RANK_ACE = 1,
+            RANK_2,
+            RANK_3,
+            RANK_4,
+            RANK_5,
+            RANK_6,
+            RANK_7,
+            RANK_8,
+            RANK_9,
+            RANK_10,
+            RANK_JACK,
+            RANK_QUEEN,
+            RANK_KING
+        }
 
         private readonly char suit;
 
-        private const char SUIT_HEARTS   = 'H';
-        private const char SUIT_CLUBS    = 'C';
-        private const char SUIT_SPADES   = 'S';
-        private const char SUIT_DIAMONDS = 'D';
+        public const char SUIT_HEARTS   = '\x2661';
+        public const char SUIT_CLUBS    = '\x2663';
+        public const char SUIT_SPADES   = '\x2660';
+        public const char SUIT_DIAMONDS = '\x2662';
 
 
+        public Card(CardRank rank, char suit = SUIT_CLUBS)
+        {
+            if (rank < CardRank.RANK_ACE || rank > CardRank.RANK_KING)
+            {
+                throw new ArgumentException("Invalid card rank");
+            }
 
+            if (SUIT_HEARTS != suit && SUIT_CLUBS != suit &&
+                SUIT_SPADES != suit && SUIT_DIAMONDS != suit)
+            {
+                // invalid suit
+                throw new ArgumentException("Invalid card suit");
+            }
+
+            this.rank = rank;
+            this.suit = suit;
+        }
+
+        public override string ToString()
+        {
+            switch (this.rank)
+            {
+                case CardRank.RANK_ACE:   return "Ace of " + suit;
+                case CardRank.RANK_2:     return "Two of " + suit;
+                case CardRank.RANK_3:     return "Three of " + suit;
+                case CardRank.RANK_4:     return "Four of " + suit;
+                case CardRank.RANK_5:     return "Five of " + suit;
+                case CardRank.RANK_6:     return "Six of " + suit;
+                case CardRank.RANK_7:     return "Seven of " + suit;
+                case CardRank.RANK_8:     return "Eight of " + suit;
+                case CardRank.RANK_9:     return "Nine of " + suit;
+                case CardRank.RANK_10:    return "Ten of " + suit;
+                case CardRank.RANK_JACK:  return "Jack of " + suit;
+                case CardRank.RANK_QUEEN: return "Queen of " + suit;
+                case CardRank.RANK_KING:  return "King of " + suit;
+            }
+            return null;
+        }
     }
 }
