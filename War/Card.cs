@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace War
 {
-    class Card
+    class Card : IComparable
     {
         /// <summary>
         /// Card rank, Ace = 1, 2-10, Jack = 11, Queen = 12, King = 13
@@ -75,6 +75,36 @@ namespace War
                 case CardRank.RANK_KING:  return "King of " + suit;
             }
             return null;
+        }
+
+        int IComparable.CompareTo(object obj)
+        {
+            if (obj.GetType() != typeof(Card))
+            {
+                throw new InvalidOperationException();
+            }
+
+            Card other = (Card)obj;
+
+            if (CardRank.RANK_ACE == this.rank)
+            {
+                // Ace is highest rank, but lowest in the enum listing so we need special code here
+                return (CardRank.RANK_ACE == other.rank) ? 0 : 1;
+            }
+            else if (CardRank.RANK_ACE == other.rank)
+            {
+                return -1;
+            }
+            else
+            {
+                if (this.rank == other.rank)
+                {
+                    return 0;
+                }
+
+                // not equal, so 
+                return (this.rank > other.rank) ? 1 : -1;
+            }
         }
     }
 }

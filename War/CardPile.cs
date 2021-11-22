@@ -12,7 +12,7 @@ namespace War
     class CardPile
     {
 
-        private Card[] pile;
+        private List<Card> pile;
 
 
         /// <summary>
@@ -35,14 +35,40 @@ namespace War
         }
 
 
+        public Card PeekTop()
+        {
+            return pile[0];
+        }
+
+        public Card TakeTop()
+        {
+            Card card = pile[0];
+            pile.RemoveAt(0);
+
+            return card;
+        }
+
+        public void Add(Card card)
+        {
+            pile.Add(card);
+        }
+
+        public void Add(CardPile pile)
+        {
+            foreach (Card card in pile.pile)
+            {
+                this.pile.Add(card);
+            }
+        }
+
         public void Shuffle()
         {
             Random rng = new Random();
 
-            for (int i = 0; i < pile.Length; i++)
+            for (int i = 0; i < pile.Count; i++)
             {
                 Card tmp = pile[i];
-                int swap = rng.Next(0, pile.Length);
+                int swap = rng.Next(0, pile.Count);
                 pile[i] = pile[swap];
                 pile[swap] = tmp;
             }
