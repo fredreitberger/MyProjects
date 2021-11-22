@@ -101,6 +101,7 @@ namespace War
                 Card p1 = player1.TakeTop();
                 Card p2 = player2.TakeTop();
 
+                // TODO: abstract this out to a view, to allow for graphics in the future
                 // Display the cards
                 string p1card = faceDown ? "Face Down" : p1.ToString();
                 string p2card = faceDown ? "Face Down" : p2.ToString();
